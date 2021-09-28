@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatecomicController;
 use App\Http\Controllers\ComicController;
+use App\Http\Controllers\ChapterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Http\Controllers\ComicController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout');
 });
 
 Auth::routes();
@@ -25,3 +26,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //
 Route::resource('category',CatecomicController::class);
 Route::resource('comic',ComicController::class);
+Route::resource('chapter',ChapterController::class);

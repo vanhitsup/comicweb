@@ -11,7 +11,7 @@ $i++;
             <div class="col-md-12">
                 <div class="card-body">
 
-                    <h2 align="center">Danh sách truyện</h2>
+                    <h2 align="center">Danh sách Chapter Truyện</h2>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
@@ -22,11 +22,10 @@ $i++;
                     <thead>
                     <tr>
                         <th scope="col">STT</th>
-                        <th scope="col">Tên Truyện</th>
-                        <th scope="col">Slug Truyện</th>
-                        <th scope="col">Ảnh</th>
+                        <th scope="col">Tên Chapter</th>
+                        <th scope="col">Slug Chapter</th>
                         <th scope="col">Tóm Tắt</th>
-                        <th scope="col">Danh Mục</th>
+                        <th scope="col">Thuộc Bộ Truyện</th>
                         <th scope="col">Kích Hoạt</th>
                         <th scope="col" width="15%">Hành Động</th>
                     </tr>
@@ -35,13 +34,10 @@ $i++;
                     @foreach($data as $key =>$value)
                         <tr>
                             <th><?php echo $i++;?></th>
-                            <td>{{$value->namecomic}}</td>
-                            <td>{{$value->slug}}</td>
-                            <td>
-                                <img src="{{asset('public/uploads/img_comic/'.$value->img_comic)}}" alt="" width="100" height="100">
-                            </td>
+                            <td>{{$value->title}}</td>
+                            <td>{{$value->slug_chapter}}</td>
                             <td>{{$value->summary}}</td>
-                            <td>{{$value->category_comic->namecate}}</td>
+                            <td>{{$value->comic->namecomic}}</td>
                             <td>
                                 @if($value->action==1)
                                     <span class="text-danger">Ngừng kích hoạt</span>
@@ -50,12 +46,12 @@ $i++;
                                 @endif
                             </td>
                             <td>
-                                <form action="{{route('comic.destroy',[$value->id])}}" method="post" style="float: left; margin-right: 5px">
+                                <form action="{{route('chapter.destroy',[$value->id])}}" method="post" style="float: left; margin-right: 5px">
                                     @method('DELETE')
                                     @csrf
                                     <button onclick="return confirm('Bạn có chắc muốn xóa ?')" class="btn btn-danger">Delete</button>
                                 </form>
-                                <a href="{{route('comic.edit',[$value->id])}}" class="btn btn-primary">Edit</a>
+                                <a href="{{route('chapter.edit',[$value->id])}}" class="btn btn-primary">Edit</a>
                             </td>
 
                     @endforeach

@@ -29,6 +29,7 @@ class CatecomicController extends Controller
     public function create()
     {
         //
+
         return  view('admin.category.create');
 
     }
@@ -44,16 +45,20 @@ class CatecomicController extends Controller
 
         $data=$request->validate([
             'namecate'=>'required|unique:category|max:255',
+            'slug'=>'required|unique:category|max:255',
             'des'=>'required|max:255',
             'action'=>'required',
             ],
         [
         'namecate.required' => 'Tên danh mục không được để trống !',
+        'slug.required' => 'Tên danh mục không được để trống !',
         'namecate.unique' => 'Tên danh mục không được trùng nhau !',
+        'slug.unique' => 'Tên slug danh mục không được trùng nhau !',
             'des.required' => 'Mô tả không được để trống !',
         ]);
         $category= new Category();
         $category->namecate=$data['namecate'];
+        $category->slug=$data['slug'];
         $category->des=$data['des'];
         $category->action=$data['action'];
 
@@ -100,15 +105,18 @@ class CatecomicController extends Controller
         //
         $data=$request->validate([
             'namecate'=>'required|max:255',
+            'slug'=>'required|max:255',
             'des'=>'required|max:255',
             'action'=>'required',
         ],
             [
                 'namecate.required' => 'Tên danh mục không được để trống !',
+                'slug.required' => 'Tên danh mục không được để trống !',
                 'des.required' => 'Mô tả không được để trống !',
             ]);
         $category= Category::find($id);
         $category->namecate=$data['namecate'];
+        $category->slug=$data['slug'];
         $category->des=$data['des'];
         $category->action=$data['action'];
 

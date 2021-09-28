@@ -21,8 +21,9 @@ $i++;
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">STT</th>
                         <th scope="col">Tên Danh Mục</th>
+                        <th scope="col">Slug Danh Mục</th>
                         <th scope="col">Mô Tả</th>
                         <th scope="col">Kích Hoạt</th>
                         <th scope="col">Hành Động
@@ -33,6 +34,7 @@ $i++;
                     <tr>
                         <th><?php echo $i++;?></th>
                         <td>{{$value->namecate}}</td>
+                        <td>{{$value->slug}}</td>
                         <td>{{$value->des}}</td>
                         <td>
                             @if($value->action==0)

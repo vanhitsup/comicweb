@@ -27,7 +27,11 @@
                         @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên danh mục</label>
-                            <input type="text" class="form-control" value="{{$data->namecate}}" name="namecate" placeholder="Tên danh mục...">
+                            <input type="text" class="form-control" value="{{$data->namecate}}" onkeyup="ChangeToSlug();" id="slug" name="namecate" placeholder="Tên danh mục...">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Slug danh mục</label>
+                            <input type="text" class="form-control" value="{{$data->slug}}" name="slug" id="convert_slug" placeholder="Slug danh mục...">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mô tả</label>
