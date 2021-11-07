@@ -16,7 +16,7 @@ class ComicController extends Controller
     public function index()
     {
         //
-        $data= Comic::with('category_comic')->orderBy('id','DESC')->get();
+        $data= Comic::with('catecomic')->orderBy('id','DESC')->get();
         return  view('admin.comic.index',compact('data'));
 
     }
@@ -48,7 +48,8 @@ class ComicController extends Controller
             'namecomic'=>'required|unique:stories|max:255',
             'slug'=>'required|unique:stories|max:255',
             'img_comic'=>'required|max:255',
-            'summary'=>'required|max:255',
+            'author'=>'required|max:255',
+            'summary'=>'required',
             'action'=>'required',
             'category'=>'required',
         ],
@@ -56,6 +57,7 @@ class ComicController extends Controller
                 'namecomic.required' => 'Tên truyện không được để trống !',
                 'img_comic.required' => 'Hình ảnh truyện không được để trống !',
                 'slug.required' => 'Slug không được để trống !',
+                'author.required' => 'Tác giả không được để trống !',
                 'category.required' => 'Bạn phải chọn danh mục !',
                 'summary.required' => 'Tóm tắt truyện không được để trống !',
                 'namecomic.unique' => 'Tên truyện không được trùng nhau !',
@@ -65,12 +67,13 @@ class ComicController extends Controller
         $comic->namecomic=$data['namecomic'];
         $comic->slug=$data['slug'];
         $comic->summary=$data['summary'];
+        $comic->author=$data['author'];
         $comic->action=$data['action'];
         $comic->category_id=$data['category'];
 
         $get_img=$request->img_comic;
 
-        $path='public/uploads/img_comic/';
+        $path='public/public/uploads/img_comic/';
         $get_name_img=$get_img->getClientOriginalName();
         $name_image=current(explode('.',$get_name_img));
         $new_img=$name_image.rand(0,9).'.'.$get_img->getClientOriginalExtension();
@@ -122,13 +125,15 @@ class ComicController extends Controller
         $data=$request->validate([
             'namecomic'=>'required|max:255',
             'slug'=>'required|max:255',
-            'summary'=>'required|max:255',
+            'author'=>'required|max:255',
+            'summary'=>'required',
             'action'=>'required',
             'category'=>'required',
         ],
             [
                 'namecomic.required' => 'Tên truyện không được để trống !',
                 'slug.required' => 'Slug không được để trống !',
+                'author.required' => 'Tác giả không được để trống !',
                 'category.required' => 'Bạn phải chọn danh mục !',
                 'summary.required' => 'Tóm tắt truyện không được để trống !',
             ]);
@@ -136,16 +141,17 @@ class ComicController extends Controller
         $comic->namecomic=$data['namecomic'];
         $comic->slug=$data['slug'];
         $comic->summary=$data['summary'];
+        $comic->author=$data['author'];
         $comic->action=$data['action'];
         $comic->category_id=$data['category'];
 
         $get_img=$request->img_comic;
         if($get_img){
-            $path='public/uploads/img_comic/'.$comic->img_comic;
+            $path='public/public/uploads/img_comic/'.$comic->img_comic;
             if(file_exists($path)){
                 unlink($path);
             }
-            $path='public/uploads/img_comic/';
+            $path='public/public/uploads/img_comic/';
 
             $get_name_img=$get_img->getClientOriginalName();
             $name_image=current(explode('.',$get_name_img));
@@ -169,7 +175,7 @@ class ComicController extends Controller
     {
         //
         $data=Comic::find($id);
-        $path='public/uploads/img_comic/'.$data->img_comic;
+        $path='public/public/uploads/img_comic/'.$data->img_comic;
         if(file_exists($path)){
             unlink($path);
         }

@@ -29,9 +29,14 @@
                             <label for="exampleInputEmail1">Tên truyện</label>
                             <input type="text" class="form-control" value="{{$comic->namecomic}}" id="slug" name="namecomic" onkeyup="ChangeToSlug();" placeholder="Tên truyện...">
                         </div>
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Slug truyện</label>
                             <input type="text" class="form-control" value="{{$comic->slug}}" id="convert_slug" name="slug" placeholder="Slug truyện...">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tác giả</label>
+                            <input type="text" class="form-control" value="{{$comic->author}}"  name="author" placeholder="Tên tác giả...">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tóm tắt truyện</label>
@@ -40,7 +45,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Hình ảnh truyện</label>
                             <input type="file" class="form-control-file" name="img_comic">
-                            <img src="{{asset('public/uploads/img_comic/'.$comic->img_comic)}}" alt="" width="100" height="100">
+                            <img src="{{asset('public/public/uploads/img_comic/'.$comic->img_comic)}}" alt="" width="100" height="100">
 
                         </div>
                         <div class="form-group">

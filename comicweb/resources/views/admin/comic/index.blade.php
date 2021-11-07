@@ -23,6 +23,7 @@ $i++;
                     <tr>
                         <th scope="col">STT</th>
                         <th scope="col">Tên Truyện</th>
+                        <th scope="col">Tác Giả</th>
                         <th scope="col">Slug Truyện</th>
                         <th scope="col">Ảnh</th>
                         <th scope="col">Tóm Tắt</th>
@@ -36,12 +37,13 @@ $i++;
                         <tr>
                             <th><?php echo $i++;?></th>
                             <td>{{$value->namecomic}}</td>
+                            <td>{{$value->author}}</td>
                             <td>{{$value->slug}}</td>
                             <td>
-                                <img src="{{asset('public/uploads/img_comic/'.$value->img_comic)}}" alt="" width="100" height="100">
+                                <img src="{{asset('public/public/uploads/img_comic/'.$value->img_comic)}}" alt="" width="100" height="100">
                             </td>
                             <td>{{$value->summary}}</td>
-                            <td>{{$value->category_comic->namecate}}</td>
+                            <td>{{$value->catecomic->namecate}}</td>
                             <td>
                                 @if($value->action==1)
                                     <span class="text-danger">Ngừng kích hoạt</span>

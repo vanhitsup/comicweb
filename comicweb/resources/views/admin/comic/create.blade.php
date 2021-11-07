@@ -33,6 +33,10 @@
                             <input type="text" class="form-control" value="{{old('slug')}}" id="convert_slug" name="slug" placeholder="Slug truyện...">
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Tác giả</label>
+                            <input type="text" class="form-control"  name="author" placeholder="Tên tác giả...">
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Tóm tắt truyện</label>
                             <textarea name="summary" rows="3" class="form-control"></textarea>
                         </div>
