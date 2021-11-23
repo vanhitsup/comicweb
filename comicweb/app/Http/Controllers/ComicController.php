@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CatecomicController;
+use App\Models\StoryType;
 class ComicController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class ComicController extends Controller
     public function index()
     {
         //
-        $data= Comic::with('catecomic')->orderBy('id','DESC')->get();
+        $data= Comic::with('catecomic','storytype')->orderBy('id','DESC')->get();
         return  view('admin.comic.index',compact('data'));
 
     }
@@ -31,7 +32,8 @@ class ComicController extends Controller
         //
 
         $data=Category::orderBy('id','DESC')->get();
-        return  view('admin.comic.create',compact('data'));
+        $type=StoryType::orderBy('id','DESC')->get();
+        return  view('admin.comic.create',compact('data','type'));
 
     }
 
@@ -50,6 +52,7 @@ class ComicController extends Controller
             'img_comic'=>'required|max:255',
             'author'=>'required|max:255',
             'summary'=>'required',
+            'storytype'=>'required',
             'action'=>'required',
             'category'=>'required',
         ],
@@ -60,6 +63,7 @@ class ComicController extends Controller
                 'author.required' => 'Tác giả không được để trống !',
                 'category.required' => 'Bạn phải chọn danh mục !',
                 'summary.required' => 'Tóm tắt truyện không được để trống !',
+                'storytype.required' => 'Thể loại truyện không được để trống !',
                 'namecomic.unique' => 'Tên truyện không được trùng nhau !',
                 'slug.unique' => 'Tên slug không được trùng nhau !',
             ]);
@@ -67,6 +71,7 @@ class ComicController extends Controller
         $comic->namecomic=$data['namecomic'];
         $comic->slug=$data['slug'];
         $comic->summary=$data['summary'];
+        $comic->storytype=$data['storytype'];
         $comic->author=$data['author'];
         $comic->action=$data['action'];
         $comic->category_id=$data['category'];
@@ -107,8 +112,10 @@ class ComicController extends Controller
         //
         $comic=Comic::find($id);
         $category=Category::orderBy('id','DESC')->get();
+        $type=StoryType::orderBy('id','DESC')->get();
 
-        return  view('admin.comic.edit',compact('comic','category'));
+
+        return  view('admin.comic.edit',compact('comic','category','type'));
     }
 
     /**
@@ -127,6 +134,7 @@ class ComicController extends Controller
             'slug'=>'required|max:255',
             'author'=>'required|max:255',
             'summary'=>'required',
+            'storytype'=>'required',
             'action'=>'required',
             'category'=>'required',
         ],
@@ -135,12 +143,14 @@ class ComicController extends Controller
                 'slug.required' => 'Slug không được để trống !',
                 'author.required' => 'Tác giả không được để trống !',
                 'category.required' => 'Bạn phải chọn danh mục !',
+                'storytype.required' => 'Loại truyện không được để trống !',
                 'summary.required' => 'Tóm tắt truyện không được để trống !',
             ]);
         $comic= Comic::find($id);
         $comic->namecomic=$data['namecomic'];
         $comic->slug=$data['slug'];
         $comic->summary=$data['summary'];
+        $comic->storytype_id=$data['storytype'];
         $comic->author=$data['author'];
         $comic->action=$data['action'];
         $comic->category_id=$data['category'];

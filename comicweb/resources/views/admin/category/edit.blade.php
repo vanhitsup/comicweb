@@ -40,12 +40,12 @@
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Kích hoạt</label>
                             <select class="form-control" name="action" id="exampleFormControlSelect1">
-                                @if($data->action == 0)
-                                    <option  value="1">Kích hoạt</option>
-                                    <option selected value="0">Ngừng kích hoạt</option>
+                                @if($data->action == 1)
+                                    <option  value="0">Kích hoạt</option>
+                                    <option selected value="1">Ngừng kích hoạt</option>
                                 @else
-                                    <option selected value="1">Kích hoạt</option>
-                                    <option  value="0">Ngừng kích hoạt</option>
+                                    <option selected value="0">Kích hoạt</option>
+                                    <option  value="1">Ngừng kích hoạt</option>
                                 @endif
                             </select>
                         </div>

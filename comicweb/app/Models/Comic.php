@@ -10,7 +10,7 @@ class Comic extends Model
     use HasFactory;
     public $timestamps=false;
     protected $fillable=[
-        'namecomic','img_comic','slug','category_id','action','summary','author'
+        'namecomic','img_comic','slug','category_id','storytype_id','action','summary','author'
     ];
 
     protected $primaryKey='id';
@@ -24,4 +24,9 @@ class Comic extends Model
     public function chapter(){
         return $this->hasMany('App\Models\Chapter','comic_id','id'); // 1 truyện có nhiều chapter
     }
+    public function storytype()
+    {
+        return $this->belongsTo('App\Models\StoryType','storytype_id','id'); //1 truyện có 1 thể loại
+    }
+
 }

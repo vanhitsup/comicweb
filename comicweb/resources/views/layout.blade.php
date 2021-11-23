@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -15,7 +16,66 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
+    <style>
+        /* You can remove these code below*/
+        :root {
+            --primary: #40869b;
+            --secondary: #13D2B8;
+            --purple: #bd93f9;
+            --pink: #ff6bcb;
+            --blue: #8be9fd;
+            --gray: #333;
+            --font: "Poppins", sans-serif;
+            --gradient: linear-gradient(40deg, #ff6ec4, #7873f5);
+            --shadow: 0 0 15px 0 rgba(0,0,0,0.05);
+        }*{box-sizing:border-box;}input,button,textarea{border:0;outline:none;}
+        /* Main code */
 
+        .subscribe-form {
+            width: 35%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        .subscribe-form-input {
+            flex: 1;
+            width: 100%;
+            outline: none;
+            padding: 10px 7px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            transition: all 0.2s linear;
+        }
+        .subscribe-form-input:focus {
+            border-color:#40869b;
+        }
+        .subscribe-form-input:focus + .subscribe-form-button {
+            background-color: #40869b;
+        }
+        .subscribe-form-button {
+            padding: 2px 10px;
+            background-color: #999;
+            color: white;
+            outline: none;
+            cursor: pointer;
+            font-weight: 500;
+            border-radius: 4px;
+            flex-shrink: 0;
+            transition: all 0.2s linear;
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+        ::placeholder{
+            font-size: 13px;
+            font-style: italic;
+        }
+        .nav-sub{
+            margin: 5px 0 10px 0;
+        }
+    </style>
 </head>
 <body class="antialiased">
 <header class="header-area overlay" style="margin-bottom: 10px">
@@ -59,17 +119,30 @@
                             <i class="fas fa-chevron-down" style="font-size: 12px"></i>
                         </a>
                         <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item"> <i class="far fa-arrow-alt-circle-right"></i> Dropdown Item 1</a>
-                            <a href="#" class="dropdown-item"> <i class="far fa-arrow-alt-circle-right"></i> Dropdown Item 2</a>
-                            <a href="#" class="dropdown-item"> <i class="far fa-arrow-alt-circle-right"></i> Dropdown Item 3</a>
+                            @foreach($story_type as $key=>$type)
+                            <a href="{{url('story-type/'.$type->slug)}}" class="dropdown-item"> <i class="far fa-arrow-alt-circle-right"></i> {{$type->name}}</a>
+                            @endforeach
 
                         </div>
                     </li>
                 </ul>
             </div>
+
         </div>
+
     </nav>
 </header>
+<div class="container" align="right">
+    <div class="nav-sub">
+        <form autocomplete="off" action="{{url('search')}}" method="GET">
+        <div class="subscribe-form">
+            <input type="search" name="keyword" id="keywords" class="subscribe-form-input" placeholder="Nhập truyện, tác giả bạn muốn tìm ..."/>
+            <button class="subscribe-form-button">Tìm kiếm</button>
+        </div>
+        </form>
+    </div>
+
+</div>
 
 <!-- Start Carousel -->
 @yield('slider')
@@ -89,6 +162,8 @@
 </footer>
 <!-- end Footer -->
 <script src="//cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=3218353928210088&autoLogAppEvents=1" nonce="5PvCMasK"></script>
 <script type="text/javascript">
     CKEDITOR.replace('content_chapter');
 </script>
@@ -148,6 +223,7 @@
         $('.select-chapter').find('option[value="'+url+'"]').attr("selected",true);
     }
 </script>
+
 </body>
 
 </html>

@@ -8,13 +8,12 @@
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Trang Chủ</a></li>
-                <li class="breadcrumb-item"><a href="#">Truyện-Sách</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Chương-Tập</li>
+                <li class="breadcrumb-item"><a href="{{url('/')}}">Trang Chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{$name_cate}}</li>
             </ol>
         </nav>
 
-        <h3>Tên danh mục</h3>
+        <h3>{{$name_cate}}</h3>
         @if($cout==0)
             <div class="row">
                 <h2 style="height: 400px;margin-left: 470px">Truyện đang được cập nhật...</h2>

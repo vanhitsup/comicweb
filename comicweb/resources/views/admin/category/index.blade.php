@@ -38,9 +38,11 @@ $i++;
                         <td>{{$value->des}}</td>
                         <td>
                             @if($value->action==0)
-                               <span class="text-danger">Ngừng kích hoạt</span>
-                            @else
                                 <span class="text-success">Kích hoạt</span>
+
+                            @else
+                                <span class="text-danger">Ngừng kích hoạt</span>
+
                             @endif
                         </td>
                         <td>

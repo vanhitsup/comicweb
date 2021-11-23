@@ -58,6 +58,15 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="exampleFormControlSelect1">Thể loại</label>
+                            <select class="form-control" name="storytype"  id="exampleFormControlSelect1">
+                                <option>--- Chọn danh mục ---</option>
+                                @foreach($type as $key =>$val_type)
+                                    <option {{$val_type->id == $comic->storytype_id ? 'selected' : ''}} value="{{$val_type->id}}">{{$val_type->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleFormControlSelect1">Kích hoạt</label>
                             <select class="form-control" name="action" id="exampleFormControlSelect1">
                                 @if($comic->action == 0)

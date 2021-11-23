@@ -54,6 +54,15 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="exampleFormControlSelect1">Thể loại</label>
+                            <select class="form-control" name="storytype"  id="exampleFormControlSelect1">
+                                <option>--- Chọn Thể Loại ---</option>
+                                @foreach($type as $key =>$value)
+                                    <option value="{{$value->id}}">{{$value->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleFormControlSelect1">Kích hoạt</label>
                             <select class="form-control" name="action" id="exampleFormControlSelect1">
                                 <option>--- Chọn ---</option>

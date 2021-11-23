@@ -8,9 +8,9 @@ $cout=count($chapter);
   <div class="container">
       <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Trang Chủ</a></li>
-              <li class="breadcrumb-item"><a href="#">Truyện-Sách</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Chương-Tập</li>
+              <li class="breadcrumb-item"><a href="{{url('/')}}">Trang Chủ</a></li>
+              <li class="breadcrumb-item"><a href="{{url('view-category/'.$comic->catecomic->slug)}}">{{$comic->catecomic->namecate}}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{$comic->namecomic}}</li>
           </ol>
       </nav>
 
@@ -25,8 +25,8 @@ $cout=count($chapter);
                    <ul style="list-style: none; text-decoration: none; font-size: 15px; margin-top: 10px">
                        <li>Tên Truyện:  {{$comic->namecomic}}</li>
                        <li>Tác Giả:  {{$comic->author}}</li>
-                       <li>Thể Loại: {{$comic->author}}</li>
-                       <li>Danh Mục: {{$comic->author}}</li>
+                       <li>Thể Loại: <a href="{{url('story-type/'.$comic->storytype->slug)}}">{{$comic->storytype->name}}</a></li>
+                       <li>Danh Mục: <a href="{{url('view-category/'.$comic->catecomic->slug)}}">{{$comic->catecomic->namecate}}</a></li>
                        <li>Số Chương/Tập: <?php echo $cout;?></li>
                        <li>Số Lượt xem <i class="far fa-eye"></i> : 2000</li>
                        <li>Ngày Đăng: PTVA</li>
@@ -34,6 +34,7 @@ $cout=count($chapter);
                        <li><a  class="view-chapter"  style="font-size: 12px;font-weight: bold; cursor: pointer">Danh Sách Chương/Tập</a></li>
                        @if($chapter1)
                        <li><a href="{{url('view-chapter/'.$chapter1->slug_chapter)}}" style="font-size: 12px" class="btn btn-danger " >Đọc Truyện</a></li>
+                       <li><a href="{{url('view-chapter/'.$chapter_final->slug_chapter)}}" style="font-size: 12px;margin-top: 5px" class="btn btn-success " >Đọc Chương Mới Nhất </a></li>
                        @else
                        @endif
                    </ul>
@@ -47,7 +48,8 @@ $cout=count($chapter);
             </div>
             <hr>
             <h4 style="font-weight: bold" class="view-chapter">Danh Sách Chương/Tập</h4>
-           <ul>
+
+            <ul>
                @php
                $count=count($chapter);
 
@@ -60,6 +62,8 @@ $cout=count($chapter);
                    Đang được cập nhật ...
                @endif
            </ul>
+            <div class="fb-comments" data-href=" {{\Illuminate\Support\Facades\URL::current()}}" data-width="100%" data-numposts="10"></div>
+
             <hr>
             <h4 style="font-weight: bold" class="view-chapter">Truyện/Sách Cùng Danh Mục</h4>
             <div class="row">

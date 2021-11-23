@@ -13,11 +13,12 @@
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Trang Chủ</a></li>
-                <li class="breadcrumb-item"><a href="#">Truyện-Sách</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Chương-Tập</li>
+                <li class="breadcrumb-item"><a href="{{url('/')}}">Trang Chủ</a></li>
+                <li class="breadcrumb-item"><a href="{{url('view-category/'.$comic_br->catecomic->slug)}}">{{$comic_br->catecomic->namecate}}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{$comic_br->namecomic}}</li>
             </ol>
         </nav>
+
 
         <div class="row">
             <div class="col-md-12">
